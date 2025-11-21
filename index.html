@@ -41,6 +41,25 @@
 
     @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
 
+    .buttons {
+      margin: 15px 0 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .buttons a {
+      background: #b99b55;
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      min-width: 150px;
+      text-align: center;
+    }
+
     form {
       margin-top:25px;
       padding:20px;
@@ -66,7 +85,7 @@
       font-size:15px;
     }
 
-    a.button, button.button {
+    button.button {
       display:inline-block;
       margin:10px 5px;
       padding:12px 20px;
@@ -77,11 +96,10 @@
       font-weight:600;
       border:none;
       cursor:pointer;
+      width: 100%;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display:none; }
   </style>
 </head>
 
@@ -103,8 +121,15 @@
 
     <p>Confirme sua presença até <b>01/12/2025</b>.</p>
 
+    <!-- BOTÕES PRINCIPAIS -->
+    <div class="buttons">
+      <a href="https://www.google.com/maps/dir//-15.8314187,-47.9550198/@-15.8314187,-47.9550198,3351m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 Localização</a>
+      <a href="#formulario">📝 Confirmar Presença</a>
+      <a href="https://m.querodecasamento.com.br/lista-de-casamento/maria-gabrielly-sidney-de-godoi" target="_blank">🎁 Lista de Presentes</a>
+    </div>
+
     <!-- FORMULÁRIO -->
-    <form action="https://formsubmit.co/mgabriellybc@gmail.com" method="POST">
+    <form id="formulario" action="https://formsubmit.co/mgabriellybc@gmail.com" method="POST">
 
       <label>Seu nome completo</label>
       <input type="text" name="nome" required>
@@ -124,7 +149,6 @@
         <option value="3+">3 ou mais</option>
       </select>
 
-      <!-- CAMPO EXTRA PARA QUANTIDADE ACIMA DE 3 -->
       <div id="maisDeTresDiv" class="hidden">
         <label>Quantos acompanhantes ao total?</label>
         <input type="number" name="quantidade_acima_de_3" min="3" placeholder="Ex: 4, 5, 6..." />
