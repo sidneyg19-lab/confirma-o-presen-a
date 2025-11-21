@@ -16,18 +16,102 @@
 
   <style>
     :root { font-family: "Playfair Display", serif; margin:0; padding:0; }
-    body { display:flex; align-items:center; justify-content:center; min-height:100vh; background:#fff8f0; color:#5a4a2d; padding:20px; }
-    .card { width:100%; max-width:720px; background:#ffffff; padding:28px; border-radius:16px; box-shadow:0 4px 30px rgba(180,160,100,0.2); border:2px solid #f2e3b0; text-align:center; }
-    .card img { width:100%; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:18px; }
+    body { 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      min-height:100vh; 
+      background:#fff8f0; 
+      color:#5a4a2d; 
+      padding:20px; 
+    }
+
+    /* --- ANIMAÇÃO DE ENTRADA (fade-in suave) --- */
+    .card {
+      width:100%; 
+      max-width:720px; 
+      background:#ffffff; 
+      padding:28px; 
+      border-radius:16px; 
+      box-shadow:0 4px 30px rgba(180,160,100,0.2); 
+      border:2px solid #f2e3b0; 
+      text-align:center;
+      opacity:0; 
+      transform:translateY(20px);
+      animation:fadeIn 1.1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    /* --- ZOOM SUAVE NA FOTO --- */
+    .card img { 
+      width:100%; 
+      max-height:300px; 
+      object-fit:cover; 
+      border-radius:12px; 
+      margin-bottom:18px;
+      transition:transform 0.6s ease;
+    }
+    .card img:hover {
+      transform:scale(1.05);
+    }
+
     h1 { font-size:32px; margin:0; color:#b99b55; }
     p { font-size:16px; color:#4b3c25; line-height:1.6; margin:14px 0; }
-    a.button { display:inline-block; margin:10px 5px; padding:12px 20px; background:#b99b55; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; transition:all 0.2s; }
-    a.button:hover { background:#caae68; }
+
+    a.button, button.button {
+      display:inline-block;
+      margin:10px 5px;
+      padding:12px 20px;
+      background:#b99b55;
+      color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      transition:all 0.2s;
+      border:none;
+      cursor:pointer;
+    }
+
+    a.button:hover, button.button:hover {
+      background:#caae68;
+    }
+
     .small { font-size:13px; color:#8d7b55; margin-top:14px; }
+
+    /* --- FORMULÁRIO --- */
+    form {
+      margin-top:25px;
+      padding:20px;
+      background:#fff6e6;
+      border-radius:12px;
+      border:2px solid #f2e3b0;
+      text-align:left;
+    }
+
+    form label { 
+      display:block; 
+      margin-bottom:6px; 
+      font-weight:600; 
+      color:#6a5837;
+    }
+
+    form input, form select {
+      width:100%;
+      padding:10px;
+      margin-bottom:14px;
+      border-radius:8px;
+      border:1px solid #d4c7a1;
+      font-size:15px;
+    }
   </style>
 </head>
+
 <body>
   <div class="card">
+
     <img 
       src="https://raw.githubusercontent.com/sidneyg19-lab/convite-casamento/main/convite1.jpeg"
       alt="Sidney e Gabrielly"
@@ -41,14 +125,12 @@
       no dia <b>26 de dezembro de 2025</b> em Brasília.
     </p>
 
-    <p>
-      Confirme sua presença até <b>01/12/2025</b>.
-    </p>
+    <p>Confirme sua presença até <b>01/12/2025</b>.</p>
 
     <a class="button" 
        href="https://wa.me/61999978955?text=Eu+confirmo!+Vamos+eu+e+minha+família+💕" 
        target="_blank">
-       💬 Confirmar presença
+       💬 Confirmar pelo WhatsApp
     </a>
 
     <a class="button" 
@@ -56,6 +138,34 @@
        target="_blank">
        📍 Ver localização — Pampas Brasília
     </a>
+
+    <!-- FORMULÁRIO DE CONFIRMAÇÃO -->
+    <form action="https://formsubmit.co/mgabriellybc@gmail.com" method="POST">
+
+      <label>Seu nome completo</label>
+      <input type="text" name="nome" required>
+
+      <label>Vai ao casamento?</label>
+      <select name="confirmacao" required>
+        <option value="">Selecione</option>
+        <option value="Sim">Sim, estarei presente</option>
+        <option value="Não">Não poderei ir</option>
+      </select>
+
+      <label>Número de acompanhantes</label>
+      <select name="acompanhantes" required>
+        <option value="0">0 (vou sozinho)</option>
+        <option value="1">1 acompanhante</option>
+        <option value="2">2 acompanhantes</option>
+        <option value="3">3 acompanhantes</option>
+      </select>
+
+      <button class="button" type="submit">💛 Enviar confirmação</button>
+
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_subject" value="Nova confirmação de presença!">
+    </form>
 
     <p class="small">Com carinho, Sidney & Gabrielly 💛</p>
   </div>
